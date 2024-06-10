@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from "react";
+import './App.css'
 
-import List from "./components/List/List";
+import JSX from './components/JSX/JSX'
+import Heading from './components/Heading'
+import Counter from './components/Counter/'
 
-import { animals } from "./data/constants";
+const App = () => {
+  const date = new Date();
 
-export default function App() {
-  const [showList, setShowList] = useState(true);
+  return <>
+    <h1>Hello, world {date.toISOString()}</h1>
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     console.log(`Removing List component`);
-  //     setShowList(false);
-  //   }, 3000);
-  // }, [])
+    <Heading text="Heading first" color="red" fs="14px" />
+    <Heading text="Heading second" color="green"></Heading>
+    <Heading />
 
-  return <>{showList && <List list={animals} />}</>;
+    <JSX />
+
+    <Counter />
+  </>
 }
+
+export default App;
