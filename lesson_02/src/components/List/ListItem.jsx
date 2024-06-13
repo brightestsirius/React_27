@@ -4,10 +4,10 @@ import { renderValue } from "./../../utils/render";
 
 import Button from './../Button/Button'
 
-export default function ListItem({ item, clickFn }) {
+export default function ListItem({ item, handleClick }) {
   return (
     <li>
-      {renderValue(item)} <Button title={`Click`} clickFn={clickFn} />
+      {renderValue(item)} <Button title={`Click`} handleClick={handleClick} />
     </li>
   );
 }
