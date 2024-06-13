@@ -1,14 +1,14 @@
-const renderValue = (value) => {
-  if (Array.isArray(value)) return value.join(`, `);
-  else if (typeof value === `object`)
+const renderItem = (item) => {
+  if (Array.isArray(item)) return item.join(`, `);
+  else if (typeof item === `object`)
     return (
       <ul>
-        {Object.keys(value).map((key, index) => (
-          <li key={index}>{value[key]}</li>
+        {Object.keys(item).map((key, index) => (
+          <li key={index}>{item[key]}</li>
         ))}
       </ul>
     );
-  return value;
+  return item;
 };
 
-export { renderValue };
+export { renderItem };

@@ -1,9 +1,8 @@
 import React from "react";
 
-import { renderValue } from "./../../utils/render";
+import { renderItem } from "./../../utils/render";
 import { printFn, alertFn } from "./../../utils/clickFns";
-
-import { animals, user } from "./../../data/mockedData";
+import { animals, user } from "./../../data/mockData";
 
 import List from "./../List/List";
 
@@ -15,7 +14,7 @@ export default function JsxRender() {
 
       <ul>
         {Object.keys(user).map((key, index) => (
-          <li key={index}>{renderValue(user[key])}</li>
+          <li key={index}>{renderItem(user[key])}</li>
         ))}
       </ul>
     </>

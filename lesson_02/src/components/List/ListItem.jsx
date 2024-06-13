@@ -1,13 +1,13 @@
 import React from "react";
 
-import { renderValue } from "./../../utils/render";
+import { renderItem } from "./../../utils/render";
 
-import Button from './../Button/Button'
+import Button from "./../Button/Button";
 
 export default function ListItem({ item, handleClick }) {
   return (
     <li>
-      {renderValue(item)} <Button title={`Click`} handleClick={handleClick} />
+      {renderItem(item)} <Button title={`Click`} handleClick={handleClick} />
     </li>
   );
 }
