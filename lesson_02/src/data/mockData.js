@@ -1,4 +1,4 @@
-const animals = [`cat`, `dog`, `lion`, [`parrot`, `tiger`]];
+const animals = [`cat`, `dog`, `lion`, `parrot`, `tiger`];
 
 const user = {
   name: `Taras`,
