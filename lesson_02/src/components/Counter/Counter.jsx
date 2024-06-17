@@ -6,29 +6,29 @@ export default function Counter() {
   const [int, setInt] = useState();
 
   const handleDecrement = () => {
-    setCounter(counter - 1);
+    setCounter(prevState => prevState - 1);
   };
 
   const handleIncrement = () => {
-    setCounter(counter + 1);
+    setCounter(prevState => prevState + 1);
   };
 
   const handleSet = () => {
     const value = +prompt(`Enter value`);
-    setCounter(counter + value);
-  };
+    setCounter(prevState => prevState+value);
+  }
 
-  const startInterval = () => {
-    const inetrval = setInterval(() => {
-      setCounter((prevState) => prevState + 1);
+  const handleStartInterval = () => {
+    const interval = setInterval(() => {
+        setCounter(prevState => prevState+1);
     }, 1000);
 
-    setInt(inetrval);
-  };
+    setInt(interval);
+  }
 
-  const stopInterval = () => {
+  const handleStopInterval = () => {
     clearInterval(int);
-  };
+  }
 
   return (
     <div className="counter">
@@ -36,8 +36,8 @@ export default function Counter() {
       <span>{counter}</span>
       <button onClick={handleIncrement}>+</button>
       <button onClick={handleSet}>Set value</button>
-      <button onClick={startInterval}>Start interval</button>
-      <button onClick={stopInterval}>Stop interval</button>
+      <button onClick={handleStartInterval}>Start interval</button>
+      <button onClick={handleStopInterval}>Stop interval</button>
     </div>
   );
 }

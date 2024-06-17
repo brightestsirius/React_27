@@ -10,7 +10,8 @@ export default function JsxExample() {
   return (
     <>
       <List list={animals} handleClick={printFn} />
-      <List list={[`Jack`, `Taras`, `Anna`]} handleClick={alertFn} />
+      <List list={[`Jack`, `Taras`]} handleClick={alertFn} />
+      <List />
 
       <ul>
         {Object.keys(user).map((key, index) => (
