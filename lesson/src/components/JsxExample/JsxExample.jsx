@@ -6,11 +6,11 @@ import { animals, user } from "./../../data/mockData";
 
 import List from "./../List/List";
 
-export default function JsxRender() {
+export default function JsxExample() {
   return (
     <>
       <List list={animals} handleClick={printFn} />
-      <List list={[`Jack`, `Tom`]} handleClick={alertFn} />
+      <List list={[`Jack`, `Taras`, `Anna`]} handleClick={alertFn} />
 
       <ul>
         {Object.keys(user).map((key, index) => (

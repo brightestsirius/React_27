@@ -3,7 +3,7 @@ import "./style.sass";
 
 export default function Counter() {
   const [counter, setCounter] = useState(0);
-  const [intervalCounter, setIntervalCounter] = useState();
+  const [int, setInt] = useState();
 
   const handleDecrement = () => {
     setCounter(counter - 1);
@@ -14,31 +14,30 @@ export default function Counter() {
   };
 
   const handleSet = () => {
-    const value = prompt(`Set value`);
-    setCounter(counter + +value);
+    const value = +prompt(`Enter value`);
+    setCounter(counter + value);
   };
 
-  const handleStartInterval = () => {
-    const interval = setInterval(() => {
+  const startInterval = () => {
+    const inetrval = setInterval(() => {
       setCounter((prevState) => prevState + 1);
     }, 1000);
 
-    setIntervalCounter(interval);
+    setInt(inetrval);
   };
 
-  const handleClearInterval = () => {
-    clearInterval(intervalCounter);
-  }
+  const stopInterval = () => {
+    clearInterval(int);
+  };
 
   return (
     <div className="counter">
       <button onClick={handleDecrement}>-</button>
       <span>{counter}</span>
       <button onClick={handleIncrement}>+</button>
-      <button onClick={handleSet}>Prompt value</button>
-
-      <button onClick={handleStartInterval}>Start increment</button>
-      <button onClick={handleClearInterval}>Stop increment</button>
+      <button onClick={handleSet}>Set value</button>
+      <button onClick={startInterval}>Start interval</button>
+      <button onClick={stopInterval}>Stop interval</button>
     </div>
   );
 }
