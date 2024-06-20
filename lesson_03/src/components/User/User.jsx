@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-export default function User({ user: userProps = {} }) {
-  const [user, setUser] = useState(userProps);
+export default function User({ user: propsUser = {} }) {
+  const [user, setUser] = useState(propsUser);
 
   useEffect(() => {
-    console.log(`Start watching for ${user.email}`);
+    console.log(`in useEffect for user`, user);
+    console.log(`Watching for ${user.email}`);
 
     return () => {
         console.log(`Stop watching for ${user.email}`);
@@ -13,25 +14,26 @@ export default function User({ user: userProps = {} }) {
 
   const handleChangeEmail = () => {
     const email = prompt(`Enter email: `, `sheva@gmail.com`);
-    setUser((prevState) => ({ ...prevState, email: email }));
-  };
+    setUser(prevState => ({...prevState, email: email}));
+  }
 
   const handleChangeName = () => {
-    const name = prompt(`Enter name: `, `Lesya`);
-    setUser((prevState) => ({ ...prevState, name: name }));
-  };
-  
+    const name = prompt(`Enter name: `, `Anya`);
+    setUser(prevState => ({...prevState, name: name}));
+  }
+
   return Object.keys(user).length ? (
     <>
-      <ul>
+        <ul>
         {Object.keys(user).map((key, index) => (
-          <li key={index}>
+            <li key={index}>
             {key}: {user[key]}
-          </li>
+            </li>
         ))}
-      </ul>
-      <button onClick={handleChangeEmail}>Change user email</button>
-      <button onClick={handleChangeName}>Change user name</button>
+        </ul>
+        <button onClick={handleChangeEmail}>Change email</button>
+        <button onClick={handleChangeName}>Change name</button>
     </>
+    
   ) : null;
 }

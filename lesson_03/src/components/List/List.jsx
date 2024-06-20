@@ -5,29 +5,35 @@ export default function List({ list: propsList = [] }) {
   const [color, setColor] = useState(`black`);
 
   useEffect(() => {
+    console.log(`in useEffect for list`, list);
+    if(list.length<4) setColor(`green`);
+  }, [list])
+
+  useEffect(()=>{
+    console.log(`in useEffect in componentDidMount – first`);
+
     setTimeout(() => {
-      setList((prevState) => prevState.slice(0, -1));
-      console.log(`in timeout`);
+        setList(prevState => prevState.slice(0, -1));
+        console.log(`in timeout`, list); // cat, dog, lion
     }, 1000);
-  }, []);
+  }, [])
 
   useEffect(() => {
-    if (list.length <= 2) setColor(`crimson`);
-  }, [list]);
+    console.log(`in useEffect for list`, list);
+    if(list.length<=2) setColor(`red`);
+  }, [list])
 
   useEffect(() => {
-    if (list.length <= 1 && color === `crimson`) console.log(`CRITICAL`);
-  }, [list, color]);
+    console.log(`in useEffect for list & color`, list, color);
+    if(list.length === 1 && color === `red`) console.log(`Critical!`);
+  }, [list, color])
 
-  const handleDelete = (index) =>
-    setList((prevState) => prevState.filter((item, id) => id !== index));
+  const handleItemDelete = (index) => setList(prevState => prevState.filter((item, id) => id !== index))
 
   return list.length ? (
-    <ul style={{ color }}>
+    <ul style={{color}}>
       {list.map((item, index) => (
-        <li key={index}>
-          {item} <button onClick={() => handleDelete(index)}>Delete</button>
-        </li>
+        <li key={index}>{item} <button onClick={() => handleItemDelete(index)}>Delete</button></li>
       ))}
     </ul>
   ) : null;
