@@ -1,57 +1,33 @@
-import React, { useState, useRef, memo } from "react";
-import "./style.sass";
+import React, { useState } from "react";
 
-import service from "./../../../services/todos";
+export default function Form({liftingNewItem}) {
+  const [newItem, setNewItem] = useState({
+    title: `New title`,
+    completed: true,
+  });
 
-export default memo(function Form({ liftingItem }) {
-  const DEFAULT_ITEM = {
-    title: `Some title`,
-    completed: false,
-  };
+  const handleItemTitle = e => setNewItem(prevState => ({...prevState, title: e.target.value}))
 
-  const [item, setItem] = useState(DEFAULT_ITEM);
-
-  const form = useRef();
-
-  const handleTitle = (e) =>
-    setItem((prevState) => ({ ...prevState, title: e.target.value }));
-
-  const handleCompleted = (e) =>
-    setItem((prevState) => ({ ...prevState, completed: e.target.checked }));
+  const handleItemCompleted = e => setNewItem(prevState => ({...prevState, completed: e.target.checked}))
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await service.post(item);
-    liftingItem(response);
-    form.current.reset();
+    const response = newItem; // await send newItem to API
+    liftingNewItem(response);
   };
 
   return (
-    <form onSubmit={handleSubmit} ref={form}>
-      <fieldset className="list__form">
-        <legend>Add item</legend>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Title: <input type="text" defaultValue={newItem.title} onChange={handleItemTitle} />
+      </label>
 
-        <label>
-          Title:{" "}
-          <input
-            type="text"
-            defaultValue={DEFAULT_ITEM.title}
-            onChange={handleTitle}
-          />
-        </label>
+      <label>
+        Completed: <input type="checkbox" defaultChecked={newItem.completed} onChange={handleItemCompleted} />
+      </label>
 
-        <label>
-          Completed:{" "}
-          <input
-            type="checkbox"
-            defaultChecked={DEFAULT_ITEM.completed}
-            onChange={handleCompleted}
-          />
-        </label>
-
-        <button>Add item</button>
-      </fieldset>
+      <button>Add</button>
     </form>
   );
-});
+}

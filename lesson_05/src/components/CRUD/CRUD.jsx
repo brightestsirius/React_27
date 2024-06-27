@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
-import Form from "./Form/Form";
-import Filter from "./Filter/Filter";
 import List from "./List/List";
+import Form from "./Form/Form";
 
 export default function CRUD() {
-  const [newItem, setNewItem] = useState();
-  const [filter, setFilter] = useState();
+    const [newItem, setNewItem] = useState();
+
+    
 
   return (
     <>
-      <Form liftingItem={setNewItem} />
-      <Filter liftingFilter={setFilter} />
-      <List newItem={newItem} filter={filter} />
+      <Form liftingNewItem={setNewItem} />
+
+      <select>
+        <option value="">All</option>
+        <option value="">Completed</option>
+        <option value="">Non-completed</option>
+      </select>
+
+      <List newItem={newItem} />
     </>
   );
 }
